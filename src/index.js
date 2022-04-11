@@ -1,17 +1,47 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "bootstrap-css-only/css/bootstrap.min.css";
+import "mdbreact/dist/css/mdb.css";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+import { render } from "react-dom";
+import "./index.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  Landing,
+  Products,
+  Gallery,
+  About,
+  WholeCakes,
+  Minis,
+  Drinks,
+  Pasteries,
+  Flavours,
+} from "./pages/";
+import { NavBar } from "./components/NavBar/NavBar";
+import { Footer } from "./components/Footer";
+
+import { AppThemeProvider } from "./providers/";
+
+const rootElement = document.getElementById("root");
+render(
+  <AppThemeProvider>
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/flavours" element={<Flavours />} />
+
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/about" element={<About />} />
+
+        <Route path="/wholecakes" element={<WholeCakes />} />
+        <Route path="/minis" element={<Minis />} />
+        <Route path="/drinks" element={<Drinks />} />
+        <Route path="/pasteries" element={<Pasteries />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+  </AppThemeProvider>,
+  rootElement
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
